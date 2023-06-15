@@ -3,18 +3,24 @@ import { Doughnut } from 'react-chartjs-2'
 import { Chart as ChartJS, registerables } from 'chart.js'
 
 interface Props {
-  sectors: SectorsData[]
+  filterType: string
+  liquidationData: string[]
 }
 
-const App = ({ sectors }: Props) => {
-  console.log(sectors)
-  const years = sectors.map((item: SectorsData) => item.sector)
-  const values = sectors.map((item: SectorsData) => item.percentage)
+const LiquidationData = ({ filterType, liquidationData }: Props) => {
+
+  const count: number[] = []
+
+  liquidationData.map((item: string) => {
+    count.push(liquidationData.filter((element: string) => element === item).length)
+  }
+  )
+
   const state = {
-    labels: years,
+    labels: liquidationData,
     datasets: [
       {
-        label: 'Registrations',
+        label: filterType,
         backgroundColor: [
           'rgb(255, 99, 132)',
           'rgb(20, 40, 150)',
@@ -27,7 +33,7 @@ const App = ({ sectors }: Props) => {
           '9b(54, 162, 235)',
           'rgb(5, 205, 86)'],
         borderColor: 'rgba(255,255,255)',
-        data: values
+        data: count
       }
     ]
   }
@@ -45,7 +51,7 @@ const App = ({ sectors }: Props) => {
           plugins: {
             title: {
               display: true,
-              text: 'Sectors Distribution in %',
+              text: 'Liquidation Data',
             },
             legend: {
               display: true,
@@ -59,4 +65,4 @@ const App = ({ sectors }: Props) => {
   )
 }
 
-export default App
+export default LiquidationData

@@ -6,6 +6,7 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   const { id } = req.query
+
   const society = await prisma.society.findUnique(
     {
       where: {
@@ -13,5 +14,6 @@ export default async function handler(
       }
     }
   )
+  
   return res.status(200).json(society)
 }

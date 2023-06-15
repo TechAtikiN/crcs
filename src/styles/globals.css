@@ -5,3 +5,9 @@
 ::-webkit-scrollbar {
   width: 0px;
 }
+
+@layer components {
+  .options{
+    @apply p-1 text-red-900 font-semibold 
+  }
+}

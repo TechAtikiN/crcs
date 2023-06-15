@@ -7,7 +7,7 @@ export default async function handler(
 ) {
 
   const { state, sector, yearOfRegistration } = req.query
-  console.log(req.query)
+  
   let societies = await prisma.society.findMany(
     {
       where: {
@@ -17,8 +17,6 @@ export default async function handler(
       }
     }
   )
-
-  console.log(societies)
   
   return res.status(200).json(societies)
 }

@@ -1000,3 +1000,123 @@ export const societies = [
     sectorType: "Credit"
   }
 ]
+
+const liquidationData = [
+  {
+    id: 1,
+    name: "The Kalyan Janata Sahakari Bank Ltd",
+    address: "Kalyanam astu, Om Vijaykrishna, Apt, Adharwadi, Kalyan, West, Thane\nMaharashtra 421301",
+    state: "MAHARASHTRA",
+    district: "THANE",
+    dateOfRegistration: "24/03/2017",
+    areaOfOperation: "West bengal, Andhra Pradesh",
+    sectorType: "Cooperative Bank"
+  },
+  {
+    id: 2,
+    name: "ABC Cooperative Bank",
+    address: "123, Main Street, ABC Nagar, XYZ City, East, District Name, STATE_NAME 123456",
+    state: "GUJARAT",
+    district: "AHMEDABAD",
+    dateOfRegistration: "01/02/2019",
+    areaOfOperation: "Gujarat, Maharashtra",
+    sectorType: "Cooperative Bank"
+  },
+  {
+    id: 3,
+    name: "XYZ Urban Cooperative Credit Society Ltd",
+    address: "456, Society Road, Society Nagar, District Name, STATE_NAME 789012",
+    state: "UTTAR PRADESH",
+    district: "LUCKNOW",
+    dateOfRegistration: "15/06/2020",
+    areaOfOperation: "Uttar Pradesh, Bihar",
+    sectorType: "Credit Society"
+  },
+  {
+    id: 4,
+    name: "PQR District Cooperative Agriculture Bank",
+    address: "789, Farm Road, Agriculture Nagar, District Name, STATE_NAME 345678",
+    state: "RAJASTHAN",
+    district: "JAIPUR",
+    dateOfRegistration: "10/11/2018",
+    areaOfOperation: "Rajasthan, Haryana",
+    sectorType: "Cooperative Bank"
+  },
+  {
+    id: 5,
+    name: "LMN Multi State Cooperative Society Ltd",
+    address: "321, Multi Road, Multi Nagar, District Name, STATE_NAME 567890",
+    state: "KARNATAKA",
+    district: "BENGALURU",
+    dateOfRegistration: "05/09/2016",
+    areaOfOperation: "Karnataka, Tamil Nadu",
+    sectorType: "Multi State Cooperative Society"
+  },
+  {
+    id: 6,
+    name: "The Kalyan Janata Sahakari Bank Ltd",
+    address: "Kalyanam astu, Om Vijaykrishna, Apt, Adharwadi, Kalyan, West, Thane\nMaharashtra 421301",
+    state: "MAHARASHTRA",
+    district: "THANE",
+    dateOfRegistration: "24/03/2017",
+    areaOfOperation: "West bengal, Andhra Pradesh",
+    sectorType: "Cooperative Bank"
+  },
+  {
+    id: 7,
+    name: "ABC Cooperative Bank",
+    address: "123, Main Street, ABC Nagar, XYZ City, East, District Name, STATE_NAME 123456",
+    state: "GUJARAT",
+    district: "AHMEDABAD",
+    dateOfRegistration: "01/02/2019",
+    areaOfOperation: "Gujarat, Maharashtra",
+    sectorType: "Cooperative Bank"
+  },
+  {
+    id: 8,
+    name: "XYZ Urban Cooperative Credit Society Ltd",
+    address: "456, Society Road, Society Nagar, District Name, STATE_NAME 789012",
+    state: "UTTAR PRADESH",
+    district: "LUCKNOW",
+    dateOfRegistration: "15/06/2020",
+    areaOfOperation: "Uttar Pradesh, Bihar",
+    sectorType: "Credit Society"
+  },
+  {
+    id: 9,
+    name: "PQR District Cooperative Agriculture Bank",
+    address: "789, Farm Road, Agriculture Nagar, District Name, STATE_NAME 345678",
+    state: "RAJASTHAN",
+    district: "JAIPUR",
+    dateOfRegistration: "10/11/2018",
+    areaOfOperation: "Rajasthan, Haryana",
+    sectorType: "Cooperative Bank"
+  },
+  {
+    id: 10,
+    name: "LMN Multi State Cooperative Society Ltd",
+    address: "321, Multi Road, Multi Nagar, District Name, STATE_NAME 567890",
+    state: "KARNATAKA",
+    district: "BENGALURU",
+    dateOfRegistration: "05/09/2016",
+    areaOfOperation: "Karnataka, Tamil Nadu",
+    sectorType: "Multi State Cooperative Society"
+  },
+  {
+    id: 11,
+    name: "DEF Credit Cooperative Society",
+    address: "987, Cooperative Street, Cooperative Nagar, District Name, STATE_NAME 901234",
+    state: "GUJARAT",
+    district: "SURAT",
+    dateOfRegistration: "12/07/2015",
+    areaOfOperation: "Gujarat, Rajasthan",
+    sectorType: "Credit Cooperative Society"
+  }
+]
+
+// extracting state, sector and district data from the above data
+const states = liquidationData.map((data) => data.state)
+const sectors = liquidationData.map((data) => data.sectorType)
+const districts = liquidationData.map((data) => data.district)
+
+export { states, sectors, districts}
