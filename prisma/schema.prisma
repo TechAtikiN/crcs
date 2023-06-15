@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// model User {
+//   id Int @id @default(autoincrement())
+//   name String
+//   email String @unique
+//   password String
+//   role Role? @default(USER)
+//   profile Profile?
+
+// }
+
+// model Profile {
+//   id Int @id @default(autoincrement())
+//   details String
+//   userId Int @unique
+//   user User @relation(fields: [userId], references: [id])
+// }
+
+// enum Role {
+//   USER 
+//   ADMIN
+// }
+
+model Society {
+  id Int @id @default(autoincrement())
+  name String
+  address String
+  state String
+  district String?
+  areaOfOperation String
+  dateOfRegistration String
+  sectorType String
+
+  @@map("societies")
+}
