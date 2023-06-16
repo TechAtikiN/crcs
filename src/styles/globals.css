@@ -10,4 +10,8 @@
   .options{
     @apply p-1 text-red-900 font-semibold 
   }
+
+  .signin-input{
+    @apply py-3 px-2  font-semibold text-lg focus:outline-none border-b-4 border-gray-100 rounded-md
+  }
 }
