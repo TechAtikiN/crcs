@@ -4,5 +4,5 @@ type UserStore = {
   user: 'ADMIN' | 'USER'
 }
 export const useUserStore = create<UserStore>((set, get) => ({
-  user: 'ADMIN',
+  user: 'USER',
 }))
