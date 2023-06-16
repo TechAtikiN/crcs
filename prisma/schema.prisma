@@ -44,3 +44,21 @@ model Society {
 
   @@map("societies")
 }
+
+model application {
+  id Int @id @default(autoincrement())
+  societyName String
+  address String
+  state String
+  district String?
+  typeOfSociety String
+  userName String
+  designation String
+  contact String
+  pan String
+  tan String
+  serviceTaxNo String
+  email String
+
+  @@map("applications")
+}

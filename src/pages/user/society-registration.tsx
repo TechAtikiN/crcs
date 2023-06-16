@@ -1,4 +1,49 @@
+import { useForm, Resolver } from 'react-hook-form';
+
+
+type FormValues = {
+  societyName: string,
+  address: string,
+  typeOfSociety: string,
+  district: string,
+  state: string
+  userName: string,
+  designation: string,
+  contact: string,
+  pan: string,
+  tan: string,
+  serviceTaxNo: string,
+  email: string
+}
+
+// const resolver: Resolver<FormValues> = async (values) => {
+//   return {
+//     values: values.address ? values : {},
+//     errors: !values.address
+//       ? {
+//         address: {
+//           type: 'required',
+//           message: 'This is required.',
+//         },
+//       }
+//       : {},
+//   };
+// };
+
 const SocietyRegistration = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({});
+  const onSubmit = handleSubmit(async (data) => {
+    console.log(data)
+    const res = await fetch('http://localhost:3000/api/applications', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    const result = await res.json()
+    console.log(result)
+  });
 
   const sectors = [
     'Agro',
@@ -30,40 +75,40 @@ const SocietyRegistration = () => {
       <div className='text-gray-700 my-6 '>
         {/* Society Details */}
 
-        <form action=''>
+        <form onSubmit={onSubmit} action=''>
 
           <div className='grid grid-cols-2'>
             {/* society details  */}
             <div className='border-r border-gray-400 p-6'>
               <h3 className='font-bold text-2xl text-center mb-6'>Society Details</h3>
-              <div className="grid grid-cols-2 gap-y-5 gap-x-7 ">
+              <div className='grid grid-cols-2 gap-y-5 gap-x-7 '>
                 <div className='flex flex-col col-span-2 space-y-2'>
                   <label className='form-label' htmlFor='societyName'>Enter name of the society</label>
-                  <input className='form-input' type='text' />
+                  <input required className='form-input' type='text' id='societyName' {...register('societyName')} />
                 </div>
 
                 <div className='flex flex-col space-y-2 col-span-2'>
-                  <label className='form-label' htmlFor='societyName'>Enter complete address of the society</label>
-                  <textarea className='form-input' />
+                  <label className='form-label' htmlFor='address'>Enter complete address of the society</label>
+                  <textarea required className='form-input' id='address' {...register('address')} />
                 </div>
 
                 <div className='flex flex-col space-y-2'>
-                  <label className='form-label' htmlFor='societyName'>Select type of the society</label>
-                  <select className='form-input' name='typeOfSociety' id='typeOfSociety'>
-                    {sectors.map(sector => (
-                      <option value={sector}>{sector}</option>
+                  <label className='form-label' htmlFor='typeOfSociety'>Select type of the society</label>
+                  <select required className='form-input' id='typeOfSociety' {...register('typeOfSociety')}>
+                    {sectors.map((sector, index) => (
+                      <option key={index} value={sector}>{sector}</option>
                     ))}
                   </select>
                 </div>
 
                 <div className='flex flex-col space-y-2'>
-                  <label className='form-label' htmlFor='societyName'>Enter district name</label>
-                  <input className='form-input' type='text' />
+                  <label className='form-label' htmlFor='district'>Enter district name</label>
+                  <input required className='form-input' type='text' id='district' {...register('district')} />
                 </div>
 
                 <div className='flex flex-col space-y-2'>
-                  <label className='form-label' htmlFor='societyName'>Enter state name</label>
-                  <input className='form-input' type='text' />
+                  <label className='form-label' htmlFor='state'>Enter state name</label>
+                  <input required className='form-input' type='text' id='state' {...register('state')} />
                 </div>
               </div>
             </div>
@@ -71,50 +116,50 @@ const SocietyRegistration = () => {
             {/* User Details  */}
             <div className='p-6'>
               <h3 className='font-bold text-2xl text-center mb-6'>User Details</h3>
-              <div className="grid grid-cols-2 gap-y-5 gap-x-7">
+              <div className='grid grid-cols-2 gap-y-5 gap-x-7'>
                 <div className='flex flex-col space-y-2'>
-                  <label className='form-label' htmlFor='societyName'>Enter Name</label>
-                  <input className='form-input' type='text' />
+                  <label className='form-label' htmlFor='name'>Enter Name</label>
+                  <input required className='form-input' type='text' id='name' {...register('userName')} />
                 </div>
 
                 <div className='flex flex-col space-y-2'>
-                  <label className='form-label' htmlFor='societyName'>Enter Designation</label>
-                  <select className='form-input' name='typeOfSociety' id='typeOfSociety'>
-                    {designations.map(designation => (
-                      <option value={designation}>{designation}</option>
+                  <label className='form-label' htmlFor='designation'>Enter Designation</label>
+                  <select required className='form-input' id='designation' {...register('designation')}>
+                    {designations.map((designation, index) => (
+                      <option key={index} value={designation}>{designation}</option>
                     ))}
                   </select>
                 </div>
 
                 <div className='flex flex-col space-y-2'>
-                  <label className='form-label' htmlFor='societyName'>Enter Mobile No.</label>
-                  <input className='form-input' type='text' />
+                  <label className='form-label' htmlFor='contact'>Enter Mobile No.</label>
+                  <input required className='form-input' type='text' id='contact' {...register('contact')} />
                 </div>
 
                 <div className='flex flex-col space-y-2'>
-                  <label className='form-label' htmlFor='societyName'>Enter PAN No.</label>
-                  <input className='form-input' type='text' />
+                  <label className='form-label' htmlFor='pan'>Enter PAN No.</label>
+                  <input required className='form-input' type='text' id='pan' {...register('pan')} />
                 </div>
 
                 <div className='flex flex-col space-y-2'>
-                  <label className='form-label' htmlFor='societyName'>Enter TAN No.</label>
-                  <input className='form-input' type='text' />
+                  <label className='form-label' htmlFor='tan'>Enter TAN No.</label>
+                  <input required className='form-input' type='text' id='tan' {...register('tan')} />
                 </div>
 
                 <div className='flex flex-col space-y-2'>
-                  <label className='form-label' htmlFor='societyName'>Enter Service Tax No.</label>
-                  <input className='form-input' type='text' />
+                  <label className='form-label' htmlFor='serviceTaxNo'>Enter Service Tax No.</label>
+                  <input required className='form-input' type='text' id='serviceTaxNo' {...register('serviceTaxNo')} />
                 </div>
 
                 <div className='flex flex-col space-y-2'>
-                  <label className='form-label' htmlFor='societyName'>Enter Email ID</label>
-                  <input className='form-input' type='text' />
+                  <label className='form-label' htmlFor='email'>Enter Email ID</label>
+                  <input required className='form-input' type='text' id='email' {...register('email')} />
                 </div>
               </div>
 
             </div>
           </div>
-          <button className="dashboard-button w-1/4 ml-6 mt-10">Submit</button>
+          <button type='submit' className='dashboard-button w-1/4 ml-6 mt-10'>Submit</button>
         </form>
 
       </div>

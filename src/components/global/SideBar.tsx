@@ -68,7 +68,6 @@ const SideBar = () => {
   const currentPath = router.pathname.split('/')[1]
   const userCurrentPath = router.pathname.split('/')[2]
   const role = useUserStore(state => state.user)
-  console.log(userCurrentPath)
 
   if (role === 'ADMIN') {
     return (
