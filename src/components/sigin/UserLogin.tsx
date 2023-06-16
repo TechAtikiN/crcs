@@ -23,7 +23,7 @@ const UserLogin = ({ setAuthState }: Props) => {
       </button>
 
       <button
-        className='text-center bg-red-500 hover:bg-red-600 hover:cursor-pointer text-white font-semibold px-4 py-3 w-full'
+        className='dashboard-button'
       >
         Submit
       </button>

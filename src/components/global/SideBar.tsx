@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { ChartBarIcon, Cog6ToothIcon, HomeIcon, QuestionMarkCircleIcon, QueueListIcon } from '@heroicons/react/24/solid'
 
 import Link from 'next/link'
-import { BuildingLibraryIcon } from '@heroicons/react/24/outline'
+import { BuildingLibraryIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
 import { useUserStore } from '@/store/UserStore'
 
 const adminLinks = [
@@ -35,24 +35,24 @@ const adminLinks = [
 
 const userLinks = [
   {
-    name: 'Dashboard',
-    href: '/home',
-    icon: <HomeIcon />
-  },
-  {
-    name: 'View Forms',
-    href: '/forms',
-    icon: <ChartBarIcon />
-  },
-  {
-    name: 'Society Details',
-    href: '/society-details',
+    name: 'Society Registration',
+    href: '/user/society-registration',
     icon: <BuildingLibraryIcon />
   },
   {
-    name: 'Grivances',
-    href: '/grivances',
+    name: 'View Forms',
+    href: '/user/forms',
+    icon: <ClipboardDocumentCheckIcon />
+  },
+  {
+    name: 'Grievances',
+    href: '/user/grievances',
     icon: <QueueListIcon />
+  },
+  {
+    name: 'Settings',
+    href: '/user/settings',
+    icon: <Cog6ToothIcon />
   },
 ]
 
@@ -66,7 +66,9 @@ const SideBar = () => {
 
   const router = useRouter()
   const currentPath = router.pathname.split('/')[1]
+  const userCurrentPath = router.pathname.split('/')[2]
   const role = useUserStore(state => state.user)
+  console.log(userCurrentPath)
 
   if (role === 'ADMIN') {
     return (
@@ -114,7 +116,7 @@ const SideBar = () => {
             <Link
               href={link.href}
               key={link.name}
-              className={`${link.href.split('/')[1] === currentPath ? 'text-white' : 'text-gray-400'} hover:text-white hover:scale-105 font-bold`}
+              className={`${link.href.split('/')[2] === userCurrentPath ? 'text-white' : 'text-gray-400'} hover:text-white hover:scale-105 font-bold`}
             >
               <div className='flex space-x-4'>
                 <p className='h-6 w-6'>{link.icon}</p>

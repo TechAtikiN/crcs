@@ -14,4 +14,20 @@
   .signin-input{
     @apply py-3 px-2  font-semibold text-lg focus:outline-none border-b-4 border-gray-100 rounded-md
   }
+
+  .form-input{
+    @apply py-2 px-2 font-semibold text-base border-4 border-red-200 focus:outline-none text-gray-600 rounded-lg
+  }
+
+  .form-input:focus{
+    @apply border-red-300
+  }
+
+  .form-label{
+    @apply text-gray-800 font-semibold text-lg
+  }
+
+  .dashboard-button{
+    @apply text-center bg-red-500 hover:bg-red-600 hover:cursor-pointer text-white font-semibold px-4 py-3 w-full
+  }
 }

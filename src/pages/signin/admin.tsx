@@ -1,10 +1,9 @@
 // named imports
 import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline'
+import { SignIContent } from '@/components/sigin'
 
 // default imports
 import Link from 'next/link'
-import Image from 'next/image'
-import { SignIContent } from '@/components/sigin'
 
 const AdminSignIn = () => {
   return (
@@ -27,7 +26,7 @@ const AdminSignIn = () => {
           <input className='signin-input' type='email' placeholder='Email' />
           <input className='signin-input' type='password' placeholder='Password' />
 
-          <button className='text-center bg-red-500 hover:bg-red-600 hover:cursor-pointer text-white font-semibold px-4 py-3 w-full'>
+          <button className='dashboard-button'>
             Submit
           </button>
 

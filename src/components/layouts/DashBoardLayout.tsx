@@ -9,7 +9,6 @@ const DashboardLayout = ({ children }: Props) => {
 
   const router = useRouter()
   const pathname = router.pathname
-  console.log(pathname)
 
   return (
     <div>
