@@ -59,6 +59,7 @@ model application {
   tan String
   serviceTaxNo String
   email String
-
+  date DateTime @default(now())
+  status String @default("Pending")
   @@map("applications")
 }

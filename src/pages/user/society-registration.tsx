@@ -1,5 +1,6 @@
-import { useForm, Resolver } from 'react-hook-form';
-
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import toast, { Toaster } from 'react-hot-toast'
 
 type FormValues = {
   societyName: string,
@@ -16,22 +17,12 @@ type FormValues = {
   email: string
 }
 
-// const resolver: Resolver<FormValues> = async (values) => {
-//   return {
-//     values: values.address ? values : {},
-//     errors: !values.address
-//       ? {
-//         address: {
-//           type: 'required',
-//           message: 'This is required.',
-//         },
-//       }
-//       : {},
-//   };
-// };
-
 const SocietyRegistration = () => {
+
+  const notify = () => toast.success(<p className='font-bold text-md'>Registration form submitted successfully</p>)
+
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({});
+
   const onSubmit = handleSubmit(async (data) => {
     console.log(data)
     const res = await fetch('http://localhost:3000/api/applications', {
@@ -42,8 +33,19 @@ const SocietyRegistration = () => {
       body: JSON.stringify(data)
     })
     const result = await res.json()
-    console.log(result)
+    if (res.status === 200) {
+      notify()
+    }
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('http://localhost:3000/api/applications')
+      const data = await res.json()
+      console.log(data)
+    }
+    fetchData()
+  }, [])
 
   const sectors = [
     'Agro',
@@ -71,6 +73,8 @@ const SocietyRegistration = () => {
   return (
     <div className=''>
       <h2 className='font-bold text-3xl text-red-500'>Society Registration Details</h2>
+
+      { }
 
       <div className='text-gray-700 my-6 '>
         {/* Society Details */}
@@ -160,6 +164,7 @@ const SocietyRegistration = () => {
             </div>
           </div>
           <button type='submit' className='dashboard-button w-1/4 ml-6 mt-10'>Submit</button>
+          <Toaster />
         </form>
 
       </div>

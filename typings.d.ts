@@ -23,3 +23,21 @@ type StateData = {
   state: string;
   count: number;
 }
+
+type Application = {
+  id: number;
+  societyName: string;
+  state: string;
+  address: string;
+  district: string;
+  userName: string;
+  contact: string;
+  pan: string;
+  tan: string;
+  serviceTaxNo: string;
+  email: string;
+  designation: string;
+  date: string;
+  typeOfSociety: string;
+  status: string;
+}

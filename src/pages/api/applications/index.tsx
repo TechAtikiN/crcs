@@ -5,7 +5,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
- 
+
   if (req.method === 'POST') {
     // add new application
     const result = await prisma.application.create({
@@ -22,6 +22,7 @@ export default async function handler(
         tan: req.body.tan,
         serviceTaxNo: req.body.serviceTaxNo,
         designation: req.body.designation,
+        date: new Date()
       }
     })
     console.log(result)
