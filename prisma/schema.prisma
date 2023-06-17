@@ -63,3 +63,14 @@ model application {
   status String @default("Pending")
   @@map("applications")
 }
+
+model form {
+  email String @unique
+  input1 String
+  input2 String
+  input3 String
+  input4 String
+  input5 String
+
+  @@map("forms")
+}

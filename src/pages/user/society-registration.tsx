@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import toast, { Toaster } from 'react-hot-toast'
 
 type FormValues = {
@@ -19,34 +19,7 @@ type FormValues = {
 
 const SocietyRegistration = () => {
 
-  const notify = () => toast.success(<p className='font-bold text-md'>Registration form submitted successfully</p>)
-
-  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({});
-
-  const onSubmit = handleSubmit(async (data) => {
-    console.log(data)
-    const res = await fetch('http://localhost:3000/api/applications', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    const result = await res.json()
-    if (res.status === 200) {
-      notify()
-    }
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('http://localhost:3000/api/applications')
-      const data = await res.json()
-      console.log(data)
-    }
-    fetchData()
-  }, [])
-
+  // form labels
   const sectors = [
     'Agro',
     'Health/Hospital',
@@ -69,6 +42,35 @@ const SocietyRegistration = () => {
     'Managing Director/CEO',
     'Co-opted/Director'
   ]
+
+  // toast notification
+  const notify = () => toast.success(<p className='font-bold text-md'>Registration form submitted successfully</p>)
+
+  // form imports
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({})
+
+  // form submit
+  const onSubmit = handleSubmit(async (data) => {
+    const res = await fetch('http://localhost:3000/api/applications', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    if (res.status === 200) {
+      notify()
+    }
+  })
+
+  // fetch data
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('http://localhost:3000/api/applications')
+      const data = await res.json()
+    }
+    fetchData()
+  }, [])
 
   return (
     <div className=''>
