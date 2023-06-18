@@ -1,9 +1,10 @@
 import { AreasGraph, LiquidationData } from '@/components/analytics'
+import { useUserStore } from '@/store/UserStore'
 import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 
 const Analytics = () => {
-
+  const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
   const [liquidationData, setLiquidationData] = useState<string[]>([])
   const [filterType, setFilterType] = useState<string>('states')
   const [areas, setAreas] = useState<string[]>([])
@@ -21,7 +22,9 @@ const Analytics = () => {
       setAreas(areas)
       setLoading(false)
     }
-    analyticsData()
+    if (user.role === 'ADMIN') {
+      analyticsData()
+    }
   }, [filterType])
 
   return (

@@ -1,12 +1,14 @@
 // named imports
+import { useRouter } from 'next/router'
+import { useUserStore } from '@/store/UserStore'
 import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline'
 import { SignIContent } from '@/components/sigin'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
+import { useAuth } from '../hooks/useAuth'
 
 // default imports
 import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
-import { useRouter } from 'next/router'
 
 type FormValues = {
   email: string,
@@ -14,35 +16,23 @@ type FormValues = {
 }
 
 const AdminSignIn = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({})
-
   const router = useRouter()
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({})
+  const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
+
   // toast notification
   const notify = () => toast.success(<p className='font-bold text-md'>Admin logged in successfully</p>)
 
   // form submit
   const onSubmit = handleSubmit(async (data) => {
-    const res = await fetch('http://localhost:3000/api/auth/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    const user = await res.json()
-    // save in local storage
-    localStorage.setItem('user', JSON.stringify(user))
-    //get user from local storage
-    const loggedInUser = JSON.parse(localStorage.getItem('user')!)
-    // check if user is admin
-    if (loggedInUser.role !== 'ADMIN') {
+    const user = await useAuth('signin', data)
+    setUser(user)
+
+    if (user.role !== 'ADMIN') {
       return router.push('/signin/user')
     } else {
-      router.push('/')
-    }
-
-    if (res.status === 200) {
       notify()
+      router.push('/')
     }
   })
 

@@ -4,18 +4,14 @@ enum Role {
   USER = 'USER',
   ROOT_ADMIN = 'ROOT_ADMIN',
 }
-type UserStore = {
+type User = {
   role: Role,
-  setRole: (role: Role | null) => void,
   email: string,
-  setEmail: (email: string) => void,
-  id: number | null,
-  setId: (id: string) => void,
   name: string,
-  setName: (name: string) => void,
-  token: string | null,
-  setToken: (token: string) => void,
+  id: number,
+  token: string,
 }
+
 type Society = {
   id: number;
   name: string;

@@ -67,10 +67,6 @@ const SideBar = () => {
   const router = useRouter()
   const currentPath = router.pathname.split('/')[1]
   const userCurrentPath = router.pathname.split('/')[2]
-  useEffect(() => {
-    const loggedinuser = localStorage.getItem('user')
-    console.log(loggedinuser)
-  }, [])
   const role = 'ADMIN'
 
   if (role === 'ADMIN') {

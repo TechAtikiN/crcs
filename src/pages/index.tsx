@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { SectorsPieChart, StateDataChart, TimeTrend } from '@/components/dashboard'
 import Head from 'next/head'
+import { useUserStore } from '@/store/UserStore'
 
 export default function Home() {
 
+  const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
+  console.log(user)
   const [badgeData, setBadgeData] = useState<Array<string>>([])
   const [societyData, setSocietyData] = useState<SocietyDataOverYears[]>([])
   const [sectors, setSectors] = useState<Array<SectorsData>>([])
@@ -14,7 +17,13 @@ export default function Home() {
     const fetchHomePageData = async () => {
       setLoading(true)
 
-      const res = await fetch('http://localhost:3000/api/home')
+      const res = await fetch('http://localhost:3000/api/home', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
+        }
+      })
       const data = await res.json()
       const { badgeData, sectors, societyData, stateData } = data
 
@@ -25,7 +34,9 @@ export default function Home() {
 
       setLoading(false)
     }
-    fetchHomePageData()
+    if (user.role === 'ADMIN') {
+      fetchHomePageData()
+    }
   }, [])
 
   return (
