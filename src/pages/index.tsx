@@ -1,30 +1,36 @@
 import { useEffect, useState } from 'react'
 import { SectorsPieChart, StateDataChart, TimeTrend } from '@/components/dashboard'
-import Head from 'next/head'
 import { useUserStore } from '@/store/UserStore'
+import { useGetData } from '@/hooks/useGetData'
+
+import Head from 'next/head'
+import { Toaster, toast } from 'react-hot-toast'
 
 export default function Home() {
 
   const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
-  console.log(user)
+  const userIsAdmin = user?.role === 'ADMIN' || user?.role === 'SUPER_ADMIN'
+
   const [badgeData, setBadgeData] = useState<Array<string>>([])
   const [societyData, setSocietyData] = useState<SocietyDataOverYears[]>([])
   const [sectors, setSectors] = useState<Array<SectorsData>>([])
   const [stateData, setStateData] = useState<Array<StateData>>([])
+
   const [loading, setLoading] = useState<boolean>(true)
 
+  const notify = () => toast.success(<p className='font-bold text-md'>You are not authorised to view this page</p>)
+
+
   useEffect(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem('user')!)
+
     const fetchHomePageData = async () => {
       setLoading(true)
-
-      const res = await fetch('http://localhost:3000/api/home', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.token}`
-        }
-      })
-      const data = await res.json()
+      const data = await useGetData('home', loggedInUser.token)
+      if (!data) {
+        notify()
+        return
+      }
       const { badgeData, sectors, societyData, stateData } = data
 
       setBadgeData(badgeData)
@@ -34,7 +40,8 @@ export default function Home() {
 
       setLoading(false)
     }
-    if (user.role === 'ADMIN') {
+    setUser(loggedInUser)
+    if (loggedInUser.role === 'ADMIN' || user.role === 'ADMIN') {
       fetchHomePageData()
     }
   }, [])
@@ -47,35 +54,36 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='mx-4 text-gray-700'>
 
-        {loading ?
-          <img className='h-20 w-70 mx-auto rounded-full' src='https://miro.medium.com/v2/resize:fit:1400/1*CsJ05WEGfunYMLGfsT2sXA.gif' alt='loader' />
-          :
-          <div className=''>
+      {userIsAdmin ? (
+        <div className='mx-4 text-gray-700'>
+          {loading ?
+            <img className='h-20 w-70 mx-auto rounded-full' src='https://miro.medium.com/v2/resize:fit:1400/1*CsJ05WEGfunYMLGfsT2sXA.gif' alt='loader' />
+            :
+            <div className=''>
 
-            {/* badge data  */}
-            <div className='flex space-x-10 p-1 ml-72'>
-              {badgeData?.map((item: any, index) => (
-                <div key={index}
-                  className={`${index % 2 === 0 ? 'bg-red-100' : 'bg-blue-100'} p-2 w-40 shadow-sm shadow-gray-400 text-center rounded-xl`}
-                >
-                  <p className='text-3xl font-bold'>{item.value}</p>
-                  <p className='text-md mt-1 font-semibold'>{item.title}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className='flex space-x-20 items-start h-60 my-7'>
-              {/* sectors pie chart */}
-              <div className='border-r border-gray-300'>
-                <SectorsPieChart sectors={sectors} />
+              {/* badge data  */}
+              <div className='flex space-x-10 p-1 ml-72'>
+                {badgeData?.map((item: any, index) => (
+                  <div key={index}
+                    className={`${index % 2 === 0 ? 'bg-red-100' : 'bg-blue-100'} p-2 w-40 shadow-sm shadow-gray-400 text-center rounded-xl`}
+                  >
+                    <p className='text-3xl font-bold'>{item.value}</p>
+                    <p className='text-md mt-1 font-semibold'>{item.title}</p>
+                  </div>
+                ))}
               </div>
-              {/* society registration trend over time */}
-              <TimeTrend societyData={societyData} />
-            </div>
-            {/* sector distribution  */}
-            {/* <div className=''>
+
+              <div className='flex space-x-20 items-start h-60 my-7'>
+                {/* sectors pie chart */}
+                <div className='border-r border-gray-300'>
+                  {sectors && <SectorsPieChart sectors={sectors} />}
+                </div>
+                {/* society registration trend over time */}
+                {societyData && <TimeTrend societyData={societyData} />}
+              </div>
+              {/* sector distribution  */}
+              {/* <div className=''>
                 <div className='rounded-3xl shadow-lg shadow-gray-400 mb-3'>
                   <h2 className='font-bold text-xl py-3 text-center mt-2'>Sectors Distribution</h2>
                   <p className='text-sm border-b text-center -mt-3 pb-2 border-gray-400'>(Scroll to see more)</p>
@@ -92,12 +100,15 @@ export default function Home() {
               </div> */}
 
 
-            <div className='mt-14 p-10'>
-              <StateDataChart stateData={stateData} />
+              <div className='mt-14 p-10'>
+                {stateData && <StateDataChart stateData={stateData} />}
+              </div>
             </div>
-          </div>
-        }
-      </div>
+          }
+        </div>
+      ) : (
+        < Toaster />
+      )}
     </>
   )
 }

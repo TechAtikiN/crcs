@@ -5,7 +5,7 @@ import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline'
 import { SignIContent } from '@/components/sigin'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
-import { useAuth } from '../hooks/useAuth'
+import { useAuth } from '../../hooks/useAuth'
 
 // default imports
 import Link from 'next/link'
