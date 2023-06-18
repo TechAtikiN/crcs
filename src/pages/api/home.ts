@@ -1,10 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import prisma from '@/lib/prisma'
-
+import jwt from 'jsonwebtoken'
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
+
   // Society data of 100 societies
   const societies = await prisma.society.findMany()
 
