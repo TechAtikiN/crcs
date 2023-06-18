@@ -70,7 +70,7 @@ const UserForms = () => {
       <div className='flex flex-col bg-stone-100 mx-36 shadow-lg mt-6'>
         <form onSubmit={onSubmit} className='p-10 h-[600px] overflow-x-hidden overflow-y-scroll'>
           <div className='text-center space-y-2'>
-            <h2 className='text-2xl font-bold'>Form 1</h2>
+            <h2 className='text-2xl font-bold'>Form {selectedForm}</h2>
             <p className='text-xl  font-semibold'>[See sub-rule (1) of rule 3]</p>
             <p className='font-semibold text-lg'>Application for appointing election agent</p>
           </div>

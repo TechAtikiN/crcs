@@ -1,11 +1,17 @@
+// named imports
 import { DashBoardLayout } from '@/components/layouts'
-import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import { SessionProvider } from "next-auth/react"
+
+// default imports
+import '@/styles/globals.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <DashBoardLayout>
-      <Component {...pageProps} />
-    </DashBoardLayout>
+    <SessionProvider>
+      <DashBoardLayout>
+        <Component {...pageProps} />
+      </DashBoardLayout>
+    </SessionProvider>
   )
 }
