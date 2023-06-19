@@ -33,5 +33,5 @@ export async function middleware(req: NextRequest, res: NextResponse) {
   }
 } 
 export const config = {
-  matcher: ['/api/home', '/api/analytics', '/api/listing', '/api/listing/:id']
+  matcher: ['/api/home', '/api/analytics', '/api/listing/', '/api/listing/:id']
 }

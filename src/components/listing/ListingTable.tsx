@@ -1,11 +1,10 @@
-import { useRouter } from "next/router"
+import { useRouter } from 'next/router'
 
 interface Props {
   societies: Society[]
 }
 
 const ListingTable = ({ societies }: Props) => {
-
   const router = useRouter()
 
   return (

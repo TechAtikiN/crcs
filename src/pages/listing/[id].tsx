@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useUserStore } from '@/store/UserStore'
 
 const Society = () => {
+  const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
+
+  const loggedInUser = JSON.parse(localStorage.getItem('user')!)
+  const userIsAdmin = user?.role === 'ADMIN' || loggedInUser?.role === 'ADMIN'
+  const token = user?.token || loggedInUser?.token
 
   const [societyData, setSocietyData] = useState<Society>()
   const [loading, setLoading] = useState(false)
@@ -13,12 +19,17 @@ const Society = () => {
     const fetchSocieties = async () => {
       setLoading(true)
       const res = await fetch(`http://localhost:3000/api/listing/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
       })
       const data = await res.json()
       setSocietyData(data)
       setLoading(false)
     }
-    fetchSocieties()
+    userIsAdmin ? fetchSocieties() : router.push('/signin/user')
   }, [])
 
   return (

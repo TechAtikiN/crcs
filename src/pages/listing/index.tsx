@@ -3,6 +3,8 @@ import { FormEvent, useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 
 import ListingTable from '@/components/listing/ListingTable'
+import { useRouter } from 'next/router'
+import { useUserStore } from '@/store/UserStore'
 
 const SocietyListing = () => {
   const states = [
@@ -41,6 +43,11 @@ const SocietyListing = () => {
     'Credit',
     'Dairy'
   ]
+  const router = useRouter()
+
+  // check if user is admin
+  const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
+
 
   // state management
   const [state, setState] = useState(states[0])
@@ -63,20 +70,31 @@ const SocietyListing = () => {
 
   // fetch data on page load
   useEffect(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem('user')!)
+    const userIsAdmin = user?.role === 'ADMIN' || loggedInUser?.role === 'ADMIN'
+    const token = user?.token || loggedInUser?.token
+
     const fetchSocieties = async () => {
       setLoading(true)
       const res = await fetch(`http://localhost:3000/api/listing?state=${state}&sector=${sector}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
       })
       const data = await res.json()
       setSocieties(data)
+
       setLoading(false)
     }
-    fetchSocieties()
+    userIsAdmin ? fetchSocieties() : router.push('/signin/user')
   }, [])
 
   useEffect(() => {
     notify()
   }, [societies])
+  console.log(societies)
 
   return (
     <div className='text-gray-700'>
@@ -92,10 +110,10 @@ const SocietyListing = () => {
       </div>
 
       {/* table data */}
-      {societies?.length > 0 && loading ?
+      {societies && societies?.length > 0 && loading ?
         <img className='h-20 w-70 mx-auto rounded-full' src='https://miro.medium.com/v2/resize:fit:1400/1*CsJ05WEGfunYMLGfsT2sXA.gif' alt='loader' />
         : <div className='mt-10'>
-          <ListingTable societies={societies} />
+          {societies && <ListingTable societies={societies} />}
         </div>
       }
     </div>

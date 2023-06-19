@@ -4,6 +4,7 @@ import { BuildingLibraryIcon, ClipboardDocumentCheckIcon } from '@heroicons/reac
 
 import Link from 'next/link'
 import { useEffect } from 'react'
+import { useUserStore } from '@/store/UserStore'
 
 const adminLinks = [
   {
@@ -56,20 +57,20 @@ const userLinks = [
   },
 ]
 
-const user = {
-  name: 'Anna Doe',
-  email: 'annadoe@gmail.com',
-  profileImg: 'https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg'
-}
-
 const SideBar = () => {
+  const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user')
+    setUser(loggedInUser)
+    console.log(loggedInUser)
+  }, [])
 
   const router = useRouter()
   const currentPath = router.pathname.split('/')[1]
   const userCurrentPath = router.pathname.split('/')[2]
-  const role = 'ADMIN'
 
-  if (role === 'ADMIN') {
+  if (user?.role === 'ADMIN') {
     return (
       <div className='min-h-screen p-5'>
         <div className='flex space-x-4 ml-6 mx-auto cursor-pointer'>
@@ -93,10 +94,9 @@ const SideBar = () => {
         </div>
 
         <Link href={'/settings'} className='flex absolute bottom-10 hover:scale-105 cursor-pointer justify-start space-x-4 items-center'>
-          <img className='h-9 w-9 rounded-full' src={user.profileImg} alt='profile-img' />
           <div className='flex flex-col'>
-            <p className='text-white font-semibold'>{user.name}</p>
-            <p className='text-gray-400 text-md'>{user.email}</p>
+            <p className='text-white font-semibold'>{user?.name}</p>
+            <p className='text-gray-400 text-md'>{user?.email}</p>
           </div>
         </Link>
 
@@ -126,10 +126,10 @@ const SideBar = () => {
         </div>
 
         <Link href={'/settings'} className='flex absolute bottom-10 hover:scale-105 cursor-pointer justify-start space-x-4 items-center'>
-          <img className='h-9 w-9 rounded-full' src={user.profileImg} alt='profile-img' />
           <div className='flex flex-col'>
-            <p className='text-white font-semibold'>{user.name}</p>
-            <p className='text-gray-400 text-md'>{user.email}</p>
+            <div className='p-2 bg-gray-300 rounded-full' />
+            <p className='text-white font-semibold'>{user?.name}</p>
+            <p className='text-gray-400 text-md'>{user?.email}</p>
           </div>
         </Link>
 

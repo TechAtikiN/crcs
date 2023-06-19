@@ -15,13 +15,6 @@ const UserLogin = ({ setAuthState }: Props) => {
       <input className='signin-input' type='email' placeholder='Email' />
       <input className='signin-input' type='password' placeholder='Password' />
 
-      <p className='text-gray-500 mx-auto font-semibold'>--OR--</p>
-
-      <button className='flex items-center hover:bg-gray-100 space-x-2 border-4 border-gray-200 px-4 py-3 font-bold rounded-lg mx-auto'>
-        <img className='w-6 h-6' src='https://image.similarpng.com/very-thumbnail/2020/12/Illustration-of-Google-icon-on-transparent-background-PNG.png' alt='google' />
-        <span className='font-semibold text-lg'>Sign in with Google</span>
-      </button>
-
       <button
         className='dashboard-button'
       >
