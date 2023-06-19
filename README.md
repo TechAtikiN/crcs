@@ -20,4 +20,16 @@ The **CRCS Dashboard** aims to provide
 
 <br>
 
+
 ## **Key Features🚀**
+<br>
+
+## **Tools and Technologies**
+1. Next.js
+2. Tailwind CSS
+3. Typescript
+4. JWT Authentication
+5. Chart.js
+6. Zustand
+7. React-hook-form
+8. React hot toast Notifications
