@@ -1,3 +1,5 @@
+import { useUserStore } from '@/store/UserStore'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import toast, { Toaster } from 'react-hot-toast'
@@ -43,6 +45,10 @@ const SocietyRegistration = () => {
     'Co-opted/Director'
   ]
 
+  const router = useRouter()
+
+  const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
+
   // toast notification
   const notify = () => toast.success(<p className='font-bold text-md'>Registration form submitted successfully</p>)
 
@@ -65,18 +71,20 @@ const SocietyRegistration = () => {
 
   // fetch data
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('http://localhost:3000/api/applications')
-      const data = await res.json()
-    }
-    fetchData()
+    const loggedInUser = JSON.parse(localStorage.getItem('user')!)
+    const isUser = user?.role === 'USER' || loggedInUser?.role === 'USER'
+    setUser(loggedInUser)
+    // const fetchData = async () => {
+    //   const res = await fetch('http://localhost:3000/api/applications')
+    //   const data = await res.json()
+    // }
+    // fetchData()
+    isUser ? null : router.push('/user/login')
   }, [])
 
   return (
     <div className=''>
       <h2 className='font-bold text-3xl text-red-500'>Society Registration Details</h2>
-
-      { }
 
       <div className='text-gray-700 my-6 '>
         {/* Society Details */}

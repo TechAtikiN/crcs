@@ -88,7 +88,7 @@ const SocietyListing = () => {
 
       setLoading(false)
     }
-    userIsAdmin ? fetchSocieties() : router.push('/signin/user')
+    userIsAdmin ? fetchSocieties() : router.push('/signin/admin')
   }, [])
 
   useEffect(() => {

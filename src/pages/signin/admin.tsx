@@ -1,10 +1,11 @@
 // named imports
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useUserStore } from '@/store/UserStore'
 import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline'
 import { SignIContent } from '@/components/signin'
 import { useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
+import { Toaster, toast } from 'react-hot-toast'
 import { useAuth } from '../../hooks/useAuth'
 
 // default imports
@@ -19,19 +20,21 @@ const AdminSignIn = () => {
   const router = useRouter()
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({})
   const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
+  const [loading, setLoading] = useState(false)
 
   // toast notification
-  const notify = () => toast.success(<p className='font-bold text-md'>Admin logged in successfully</p>)
+  const notify = () => toast.loading(<p className='font-bold text-md'>Logging in...</p>)
 
   // form submit
   const onSubmit = handleSubmit(async (data) => {
+    setLoading(true)
     const user = await useAuth('signin', data)
+    loading && notify()
     setUser(user)
-
-    if (user.role !== 'ADMIN') {
-      return router.push('/signin/user')
+    setLoading(false)
+    if (user?.role !== 'ADMIN') {
+      return router.push('/signin/admin')
     } else {
-      notify()
       router.push('/')
     }
   })
@@ -63,7 +66,7 @@ const AdminSignIn = () => {
             <p className='text-red-500 cursor-pointer font-bold text-right'>Forgot Password?</p>
 
             <Link
-              href='/signin/user'
+              href='/user/login'
               className='flex cursor-pointer items-center'
             >
               <ArrowLeftCircleIcon className='h-6 w-6 text-gray-700' />
@@ -74,6 +77,7 @@ const AdminSignIn = () => {
           </form>
         </div>
       </div>
+      <Toaster />
     </div>
   )
 }

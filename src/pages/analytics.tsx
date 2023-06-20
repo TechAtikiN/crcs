@@ -36,7 +36,7 @@ const Analytics = () => {
       setLoading(false)
     }
 
-    userIsAdmin ? analyticsData() : router.push('/signin/user')
+    userIsAdmin ? analyticsData() : router.push('/signin/admin')
   }, [filterType])
 
   return (

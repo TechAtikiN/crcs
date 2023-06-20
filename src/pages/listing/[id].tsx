@@ -29,7 +29,7 @@ const Society = () => {
       setSocietyData(data)
       setLoading(false)
     }
-    userIsAdmin ? fetchSocieties() : router.push('/signin/user')
+    userIsAdmin ? fetchSocieties() : router.push('/signin/admin')
   }, [])
 
   return (

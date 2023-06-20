@@ -6,9 +6,11 @@ interface Props {
   children: React.ReactNode
 }
 const DashboardLayout = ({ children }: Props) => {
-
   const router = useRouter()
   const pathname = router.pathname
+  console.log(pathname)
+  const authRoutes = ['/user/login', '/user/signup', '/signin/admin']
+  const authLayout = authRoutes.includes(pathname)
 
   return (
     <div>
@@ -17,11 +19,7 @@ const DashboardLayout = ({ children }: Props) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      {pathname.includes('/user/login' || '/user/signup') ? (
-        <main>
-          {children}
-        </main>
-      ) : (
+      {!authLayout ? (
         <div className="grid grid-cols-12">
           {/* left section  */}
           <div className="col-span-2 bg-[#212A3E]">
@@ -38,6 +36,10 @@ const DashboardLayout = ({ children }: Props) => {
           </div>
 
         </div>
+      ) : (
+        <main>
+          {children}
+        </main>
       )}
 
     </div>

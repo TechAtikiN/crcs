@@ -14,8 +14,13 @@ export const useAuth = async (endpoint: string, data: data) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-    })
+  })
   const user = await res.json()
+    if (!res.ok) {
+      alert('Invalid credentials')
+      window.location.reload()
+      return
+    }
   
     // save in local storage
     localStorage.setItem('user', JSON.stringify(user))

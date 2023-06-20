@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useUserStore } from '@/store/UserStore'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Toaster, toast } from 'react-hot-toast'
 
@@ -12,8 +14,12 @@ type FormValues = {
 }
 
 const UserForms = () => {
+  const router = useRouter()
+
+  const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
 
   const [selectedForm, setSelectedForm] = useState(1)
+
   // toast notification
   const notify = () => toast.success(<p className='font-bold text-md'>Form submitted successfully</p>)
 
@@ -40,6 +46,14 @@ const UserForms = () => {
       notify()
     }
   })
+
+  useEffect(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem('user')!)
+    const isUser = user?.role === 'USER' || loggedInUser?.role === 'USER'
+    setUser(loggedInUser)
+
+    isUser ? null : router.push('/user/login')
+  }, [])
 
   return (
     <div className='text-gray-700'>

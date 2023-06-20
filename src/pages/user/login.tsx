@@ -3,7 +3,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { useUserStore } from '@/store/UserStore'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
-import { toast } from 'react-hot-toast'
+
 type FormValues = {
   email: string
   password: string
@@ -14,13 +14,9 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({})
   const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
 
-  const notify = () => toast.success(<p className='font-bold text-md'>New user created successfully</p>)
-
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data)
     const user = await useAuth('signin', data)
     setUser(user)
-    console.log(user)
     user && router.push('/user/society-registration')
   })
 
@@ -57,11 +53,11 @@ const Login = () => {
             <p className='text-red-500 hover:border-b border-red-400 cursor-pointer font-semibold'>Forgot Password?</p>
           </div>
 
-          <p className='text-xl font-semibold'>Login as <span onClick={() => router.push('/signin/admin')} className='hover:border-b border-gray-800 font-bold cursor-pointer'>Admin</span></p>
+          <p
+            className='text-xl font-semibold'>Login as <span onClick={() => router.push('/signin/admin')} className='hover:border-b border-gray-800 font-bold cursor-pointer'>Admin</span></p>
 
         </div>
       </div>
-
     </div>
   )
 }
