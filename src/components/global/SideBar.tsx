@@ -126,8 +126,8 @@ const SideBar = () => {
         </div>
 
         <Link href={'/settings'} className='flex absolute bottom-10 hover:scale-105 cursor-pointer justify-start space-x-4 items-center'>
+          <div className='p-6 bg-gray-300 rounded-full' />
           <div className='flex flex-col'>
-            <div className='p-2 bg-gray-300 rounded-full' />
             <p className='text-white font-semibold'>{user?.name}</p>
             <p className='text-gray-400 text-md'>{user?.email}</p>
           </div>

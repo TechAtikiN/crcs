@@ -1,10 +1,8 @@
-import { SignIContent, UserLogin, UserRegister } from "@/components/sigin"
+import { SignIContent, UserLogin, UserRegister } from "@/components/signin"
 import Image from "next/image"
 import { useState } from "react"
 
-const UserSignIn = () => {
-
-  const [authState, setAuthState] = useState<string>('register')
+const Signup = () => {
 
   return (
     <div className='grid grid-cols-11'>
@@ -19,17 +17,12 @@ const UserSignIn = () => {
         </div>
       </div>
 
-
       <div className='col-span-7 z-10 rounded-l-full'>
-        {
-          authState === 'register' ?
-            <UserRegister setAuthState={setAuthState} /> :
-            <UserLogin setAuthState={setAuthState} />
-        }
+        <UserRegister />
       </div>
 
     </div>
   )
 }
 
-export default UserSignIn
+export default Signup

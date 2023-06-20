@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router'
 import { useUserStore } from '@/store/UserStore'
 import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline'
-import { SignIContent } from '@/components/sigin'
+import { SignIContent } from '@/components/signin'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { useAuth } from '../../hooks/useAuth'

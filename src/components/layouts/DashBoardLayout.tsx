@@ -17,7 +17,7 @@ const DashboardLayout = ({ children }: Props) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      {pathname.includes('/signin') ? (
+      {pathname.includes('/user/login' || '/user/signup') ? (
         <main>
           {children}
         </main>

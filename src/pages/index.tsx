@@ -45,7 +45,7 @@ export default function Home() {
       setLoading(false)
     }
     setUser(loggedInUser)
-    userIsAdmin ? fetchHomePageData() : router.push('/signin/user')
+    userIsAdmin ? fetchHomePageData() : router.push('/user/login')
   }, [])
 
   return (

@@ -1,14 +1,8 @@
-import { useAuth } from "@/hooks/useAuth"
-import { useUserStore } from "@/store/UserStore"
-import { useRouter } from "next/router"
-import { use } from "react"
-import { useForm } from "react-hook-form"
-import { toast } from "react-hot-toast"
-
-interface Props {
-  setAuthState: (state: string) => void
-}
-
+import { useAuth } from '@/hooks/useAuth'
+import { useUserStore } from '@/store/UserStore'
+import { useRouter } from 'next/router'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
 type FormValues = {
   name: string
   email: string
@@ -17,7 +11,7 @@ type FormValues = {
   phone: string
 }
 
-const UserRegister = ({ setAuthState }: Props) => {
+const UserRegister = () => {
   const router = useRouter()
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({})
   const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
@@ -41,7 +35,7 @@ const UserRegister = ({ setAuthState }: Props) => {
     <div className='flex flex-col align-middle text-gray-700 space-y-8 my-28 mx-48'>
       <h2 className='text-3xl font-bold text-left'>Create Account</h2>
 
-      <form onSubmit={onSubmit} className="grid grid-cols-2 gap-x-10 gap-y-10" action="">
+      <form onSubmit={onSubmit} className='grid grid-cols-2 gap-x-10 gap-y-10' action=''>
         <input {...register('name')} className='signin-input col-span-2' type='text' placeholder='Name' />
         <input {...register('email')} className='signin-input col-span-2' type='email' placeholder='Email' />
         <input {...register('password')} className='signin-input col-span-2' type='password' placeholder='Password' />
@@ -56,7 +50,7 @@ const UserRegister = ({ setAuthState }: Props) => {
         </button>
       </form>
       <div className='text-lg flex justify-between items-center'>
-        <p>Already have an account? <span onClick={() => setAuthState('login')} className='hover:border-b border-red-400 font-semibold cursor-pointer text-red-500'>Login</span></p>
+        <p>Already have an account? <span onClick={() => router.push('/user/login')} className='hover:border-b border-red-400 font-semibold cursor-pointer text-red-500'>Login</span></p>
         <p className='text-red-500 hover:border-b border-red-400 cursor-pointer font-semibold'>Forgot Password?</p>
       </div>
 
