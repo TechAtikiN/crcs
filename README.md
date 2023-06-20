@@ -6,7 +6,7 @@ alt="img-verification">
 
 
 # **CRCS✨**
-#### Welcome to the __Central Registrar for Cooperative Societies__ (CRCS) Dashboard that I built during a __hackathon__ conducted by __AICTE__! The dashboard consists of __Role Based Access__ to the CRCS dashboard for the admins(**Government Admins**) and the **users**(**Society Admins**) of the dashboard. 
+s#### Welcome to the __Central Registrar for Cooperative Societies__ (CRCS) Dashboard that I built during a __hackathon__ conducted by __AICTE__! The dashboard consists of __Role Based Access__ to the CRCS dashboard for the admins(**Government Admins**) and the **users**(**Society Admins**) of the dashboard. 
 <br>
 
 ## **Project Objective🎯**
@@ -22,6 +22,11 @@ The **CRCS Dashboard** aims to provide
 
 
 ## **Key Features🚀**
+ - Custom Hooks
+ - Role Based Access
+ - JWT Authentication
+ - Pleasant UI
+ - Analytics Support
 <br>
 
 ## **Tools and Technologies**

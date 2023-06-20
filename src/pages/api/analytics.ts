@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '@/lib/prisma'
 import { states, sectors, districts} from '../../../db'
+import prisma from '@/lib/prisma'
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
@@ -25,6 +25,6 @@ export default async function handler(
   } else if (type === 'sectors') {
     liquidationData = sectors
   }
-
+  console.log(liquidationData)
   return res.status(200).json({liquidationData, areas})
 }

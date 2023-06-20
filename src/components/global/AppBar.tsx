@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useUserStore } from '@/store/UserStore'
-import { BellAlertIcon, MagnifyingGlassIcon, PowerIcon } from '@heroicons/react/24/outline'
-import { log } from 'console'
+import { ArrowLeftOnRectangleIcon, BellAlertIcon, MagnifyingGlassIcon, PowerIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
 
 const AppBar = () => {
@@ -28,7 +27,7 @@ const AppBar = () => {
         <p className='text-2xl font-bold'>Hello, {user?.name}!</p>
         <BellAlertIcon className='h-6 w-6' />
         <div onClick={() => setLogout(true)} className='p-2 cursor-pointer rounded-full bg-red-400'>
-          <PowerIcon className='w-6 h-6 text-black ' />
+          <ArrowLeftOnRectangleIcon className='w-6 h-6 text-black ' />
         </div>
       </div>
     </div >
