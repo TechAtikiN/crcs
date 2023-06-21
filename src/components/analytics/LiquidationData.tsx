@@ -8,7 +8,6 @@ interface Props {
 }
 
 const LiquidationData = ({ filterType, liquidationData }: Props) => {
-
   const count: number[] = []
 
   liquidationData.map((item: string) => {

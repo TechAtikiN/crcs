@@ -29,7 +29,7 @@ const SocietyListing = () => {
 
   return (
     <div className='text-gray-700'>
-      <h2 className='font-bold text-2xl'>Registered Societies under MSCS</h2>
+      <h2 className='font-bold text-2xl'>Society applications under MSCS</h2>
 
       {/* table data */}
       {applications?.length > 0 && loading ?
