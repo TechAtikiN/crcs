@@ -53,7 +53,7 @@ const Help = () => {
 
       <div className='grid grid-cols-2 mx-40 gap-x-10 gap-y-10'>
         {features.map((feature, index) => (
-          <div key={index} className='flex flex-col bg-red-100 rounded-xl p-6 space-y-3 mt-10'>
+          <div key={index} className='flex hover:scale-105 transition-shadow hover:cursor-pointer hover:shadow-xl flex-col bg-red-100 rounded-xl p-6 space-y-3 mt-10'>
             <div className='flex space-x-5 items-center'>
               <div className='h-10 w-10 bg-red-500 text-white rounded-full p-2'>
                 {feature.icon}

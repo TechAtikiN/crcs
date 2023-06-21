@@ -50,7 +50,7 @@ const Login = () => {
           </form>
           <div className='text-lg flex justify-between items-center'>
             <p>Don't have an account? <span onClick={() => router.push('/user/signup')} className='hover:border-b border-red-400 font-semibold cursor-pointer text-red-500'>Register</span></p>
-            <p className='text-red-500 hover:border-b border-red-400 cursor-pointer font-semibold'>Forgot Password?</p>
+            <p onClick={() => alert('This feature is under construction')} className='text-red-500 hover:border-b border-red-400 cursor-pointer font-semibold'>Forgot Password?</p>
           </div>
 
           <p

@@ -63,7 +63,7 @@ const AdminSignIn = () => {
               Submit
             </button>
 
-            <p className='text-red-500 cursor-pointer font-bold text-right'>Forgot Password?</p>
+            <p onClick={() => alert('This feature is under construction')} className='text-red-500 cursor-pointer font-bold text-right'>Forgot Password?</p>
 
             <Link
               href='/user/login'
