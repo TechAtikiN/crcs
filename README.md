@@ -24,7 +24,7 @@ alt="img-verification">
  -  Chart.js
 
 **Backend**
-  - PostgresSQL
+  - PostgreSQL
   - Prisma ORM
   - Railway
  -  JWT Authentication
@@ -48,6 +48,8 @@ alt="img-verification">
 <br>
 
 ***
+<br>
+
 ## **Important Links🚀**
 <br>
 
@@ -60,14 +62,21 @@ alt="img-verification">
 
 <br>
 
+***
+<br>
+
 ## **Project Objective🚀**
 <br>
 
 The **CRCS Dashboard** aims to provide 
-- **User-friendly** and **intuitive interface** for managing societies under CRCS.🙌
+- **User-friendly** and **intuitive interface** for managing societies under CRCS.
 -  **Data analytics** by leveraging advanced tools and technologies.📊 
+-  **Role-based access** to the dashboard for the admins(**Government Admins**) and the **users**(**Society Admins**).
 -  **Seamless registration**, ensuring
-**timely updates** and **amendments**, and enables efficient **handling of appeals**.📝
+**timely updates** and **amendments**, and enables efficient **handling of appeals**.
+-  **Efficient analysis** of data with interactive filters and charts.📈
+-  **Better way for registration** of the society.
+-  **Efficient handling of appeals** with **grievances** form.
 
 <br>
 
