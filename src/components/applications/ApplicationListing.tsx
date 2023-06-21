@@ -4,7 +4,6 @@ interface Props {
   applications: Application[]
 }
 const ApplicationsListingTable = ({ applications }: Props) => {
-
   const router = useRouter()
   applications = applications.reverse()
 

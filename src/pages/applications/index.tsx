@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
-
 import ApplicationsListingTable from '@/components/applications/ApplicationListing'
 
 const SocietyListing = () => {

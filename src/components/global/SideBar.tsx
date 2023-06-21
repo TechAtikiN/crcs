@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import { ChartBarIcon, Cog6ToothIcon, HomeIcon, QuestionMarkCircleIcon, QueueListIcon } from '@heroicons/react/24/solid'
 import { BuildingLibraryIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
-
-import Link from 'next/link'
 import { useEffect } from 'react'
 import { useUserStore } from '@/store/UserStore'
+
+import Link from 'next/link'
 
 const adminLinks = [
   {
@@ -65,15 +65,14 @@ const userLinks = [
 const SideBar = () => {
   const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])
 
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem('user')
-    setUser(loggedInUser)
-    console.log(loggedInUser)
-  }, [])
-
   const router = useRouter()
   const currentPath = router.pathname.split('/')[1]
   const userCurrentPath = router.pathname.split('/')[2]
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user')
+    setUser(loggedInUser)
+  }, [])
 
   if (user?.role === 'ADMIN') {
     return (

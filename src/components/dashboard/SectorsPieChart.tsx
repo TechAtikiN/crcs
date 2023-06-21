@@ -7,7 +7,6 @@ interface Props {
 }
 
 const App = ({ sectors }: Props) => {
-  console.log(sectors)
   const years = sectors.map((item: SectorsData) => item.sector)
   const values = sectors.map((item: SectorsData) => item.percentage)
   const state = {

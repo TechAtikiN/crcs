@@ -35,6 +35,5 @@ export default async function handler(
   } else if (type === 'sectors') {
     liquidationData = sectors
   }
-  console.log(liquidationData)
   return res.status(200).json({sectorsData, liquidationData, areas})
 }

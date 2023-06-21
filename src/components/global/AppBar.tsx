@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useUserStore } from '@/store/UserStore'
-import { ArrowLeftOnRectangleIcon, BellAlertIcon, MagnifyingGlassIcon, PowerIcon } from '@heroicons/react/24/outline'
+import { ArrowLeftOnRectangleIcon, BellAlertIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
 
 const AppBar = () => {
-
   const router = useRouter()
 
   const [user, setUser] = useUserStore((state: any) => [state.user, state.setUser])

@@ -19,7 +19,6 @@ const UserRegister = () => {
   const notify = () => toast.success(<p className='font-bold text-md'>New user created successfully</p>)
 
   const onSubmit = handleSubmit(async (data: FormValues) => {
-    console.log(data)
     const user = await useAuth('signup', data)
     setUser(user)
 
@@ -49,11 +48,11 @@ const UserRegister = () => {
           Submit
         </button>
       </form>
+
       <div className='text-lg flex justify-between items-center'>
         <p>Already have an account? <span onClick={() => router.push('/user/login')} className='hover:border-b border-red-400 font-semibold cursor-pointer text-red-500'>Login</span></p>
         <p onClick={() => alert('This feature is under construction')} className='text-red-500 hover:border-b border-red-400 cursor-pointer font-semibold'>Forgot Password?</p>
       </div>
-
     </div>
   )
 }

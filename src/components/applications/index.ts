@@ -1,1 +1,1 @@
-export { default as ApplicationListing} from './ApplicationListing'
+export { default as ApplicationListing } from './ApplicationListing'

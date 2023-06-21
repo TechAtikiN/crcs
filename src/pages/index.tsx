@@ -75,7 +75,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
             <div className='flex space-x-20 items-start h-60 my-7'>
               {/* sectors pie chart */}
               <div className='border-r border-gray-300'>
@@ -84,24 +83,6 @@ export default function Home() {
               {/* society registration trend over time */}
               {societyData && <TimeTrend societyData={societyData} />}
             </div>
-            {/* sector distribution  */}
-            {/* <div className=''>
-                <div className='rounded-3xl shadow-lg shadow-gray-400 mb-3'>
-                  <h2 className='font-bold text-xl py-3 text-center mt-2'>Sectors Distribution</h2>
-                  <p className='text-sm border-b text-center -mt-3 pb-2 border-gray-400'>(Scroll to see more)</p>
-                  <div className='h-48 overflow-x-hidden overflow-y-scroll mb-2'>
-                    {sectors.map((item: any, index) => (
-                      <div key={index} className=' flex hover:bg-gray-200 pb-2 hover:cursor-pointer justify-between p-3 border-b space-x-20 border-gray-100'>
-                        <p className='font-semibold'>{item.sector}</p>
-                        <p className='font-bold text-lg'>{item.percentage}%</p>
-                      </div>
-                    )
-                    )}
-                  </div>
-                </div>
-              </div> */}
-
-
             <div className='mt-14 p-10'>
               {stateData && <StateDataChart stateData={stateData} />}
             </div>

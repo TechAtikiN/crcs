@@ -6,7 +6,6 @@ interface Props {
 
 const ListingTable = ({ societies }: Props) => {
   const router = useRouter()
-  console.log(societies)
 
   return (
     <table className='mx-auto shadow-2xl overflow-y-scroll overflow-x-hidden'>

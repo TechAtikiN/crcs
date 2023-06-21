@@ -3,6 +3,7 @@ import prisma from '@/lib/prisma';
 import validator from 'validator'
 import bcrypt from 'bcrypt'
 import * as jose from 'jose'
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   
   if (req.method === 'POST') {

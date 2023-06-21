@@ -15,6 +15,7 @@ const Grievances = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data)
+    alert('Grievances form submitted successfully')
     notify()
   })
 
@@ -44,12 +45,9 @@ const Grievances = () => {
             <label className='form-label' htmlFor='additionalInfo'>Additional Information</label>
             <input required className='form-input' type='text' id='additionalInfo' {...register('additionalInfo')} />
           </div>
-
           <button type='submit' className='dashboard-button w-1/2 mt-20 mx-auto'>Submit</button>
-
         </form>
       </div>
-
     </div>
   )
 }

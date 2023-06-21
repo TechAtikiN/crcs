@@ -1,6 +1,6 @@
-import { CategoryScale } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, registerables } from 'chart.js';
+import { CategoryScale } from 'chart.js'
+import { Bar } from 'react-chartjs-2'
+import { Chart as ChartJS, registerables } from 'chart.js'
 
 interface Props {
   sectorsData: SectorsDataNew[]
@@ -27,8 +27,8 @@ const SectorsTrend = ({ sectorsData }: Props) => {
         data: societies
       }
     ]
-  };
-  ChartJS.register(...registerables, CategoryScale);
+  }
+  ChartJS.register(...registerables, CategoryScale)
 
   return (
     <div className=''>
@@ -53,7 +53,7 @@ const SectorsTrend = ({ sectorsData }: Props) => {
         }}
       />
     </div>
-  );
-};
+  )
+}
 
-export default SectorsTrend;
+export default SectorsTrend

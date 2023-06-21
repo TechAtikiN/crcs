@@ -41,7 +41,6 @@ const Application = () => {
       notify()
     }
   }
-  console.log()
 
   return (
     <div className='text-gray-700'>

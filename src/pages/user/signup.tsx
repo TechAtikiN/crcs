@@ -1,6 +1,5 @@
-import { SignIContent, UserLogin, UserRegister } from "@/components/signin"
-import Image from "next/image"
-import { useState } from "react"
+import { SignIContent, UserRegister } from '@/components/signin'
+import Image from 'next/image'
 
 const Signup = () => {
 

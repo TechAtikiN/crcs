@@ -25,7 +25,6 @@ export default async function handler(
         date: new Date()
       }
     })
-    console.log(result)
     return res.status(200).json({ message: 'Recived Society Registrations Successfully' })
   }
   if (req.method === 'GET') {
@@ -33,5 +32,4 @@ export default async function handler(
     const result = await prisma.application.findMany()
     return res.status(200).json(result)
   }
-
 }

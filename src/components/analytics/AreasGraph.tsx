@@ -7,7 +7,6 @@ interface Props {
 }
 
 const App = ({ areas }: Props) => {
-
   // unique areas
   const uniqueAreas = areas.filter((item, index) => {
     return areas.indexOf(item) === index
@@ -23,7 +22,6 @@ const App = ({ areas }: Props) => {
   const state = {
     labels: uniqueAreas,
     datasets: [
-
       {
         label: 'Societies',
         backgroundColor: [

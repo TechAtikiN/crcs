@@ -1,6 +1,6 @@
-import Head from "next/head"
-import { AppBar, SideBar } from "../global"
-import { useRouter } from "next/router"
+import { AppBar, SideBar } from '../global'
+import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 interface Props {
   children: React.ReactNode
@@ -8,7 +8,6 @@ interface Props {
 const DashboardLayout = ({ children }: Props) => {
   const router = useRouter()
   const pathname = router.pathname
-  console.log(pathname)
   const authRoutes = ['/user/login', '/user/signup', '/signin/admin']
   const authLayout = authRoutes.includes(pathname)
 
@@ -20,9 +19,9 @@ const DashboardLayout = ({ children }: Props) => {
       </Head>
 
       {!authLayout ? (
-        <div className="grid grid-cols-12">
+        <div className='grid grid-cols-12'>
           {/* left section  */}
-          <div className="col-span-2 bg-[#212A3E]">
+          <div className='col-span-2 bg-[#212A3E]'>
             <SideBar />
           </div>
 
@@ -30,7 +29,7 @@ const DashboardLayout = ({ children }: Props) => {
           <div className='col-span-10'>
             <AppBar />
 
-            <main className="mx-4 my-6">
+            <main className='mx-4 my-6'>
               {children}
             </main>
           </div>
