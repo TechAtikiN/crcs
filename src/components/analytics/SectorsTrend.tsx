@@ -3,27 +3,18 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from 'chart.js';
 
 interface Props {
-  societyData: SocietyDataOverYears[]
+  sectorsData: SectorsDataNew[]
 }
 
-const App = ({ societyData }: Props) => {
-  const years = societyData.map((item: SocietyDataOverYears) => item.year)
-  const values = societyData.map((item: SocietyDataOverYears) => item.count)
+const SectorsTrend = ({ sectorsData }: Props) => {
+  const sectors = sectorsData.map((item) => item.sector)
+  const societies = sectorsData.map((item) => item.societies)
   const state = {
-    labels: years,
+    labels: sectors,
     datasets: [
       {
         label: 'Registrations',
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-          'rgba(255, 205, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(201, 203, 207, 0.2)'
-        ],
-        borderColor: [
           'rgb(255, 99, 132)',
           'rgb(255, 159, 64)',
           'rgb(255, 205, 86)',
@@ -33,7 +24,7 @@ const App = ({ societyData }: Props) => {
           'rgb(201, 203, 207)'
         ],
         borderWidth: 1,
-        data: values
+        data: societies
       }
     ]
   };
@@ -51,7 +42,7 @@ const App = ({ societyData }: Props) => {
           plugins: {
             title: {
               display: true,
-              text: 'Society Registrations over the years',
+              text: 'Distribution of Societies by Sector',
             },
             legend: {
               display: false,
@@ -65,4 +56,4 @@ const App = ({ societyData }: Props) => {
   );
 };
 
-export default App;
+export default SectorsTrend;

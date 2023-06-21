@@ -15,6 +15,16 @@ export default async function handler(
     })
   })
   
+  const sectorsData = societies
+    .map((society) => society.sectorType)
+    .filter((value, index, self) => self.indexOf(value) === index)
+    .map((sector) => {  
+    return {
+      'sector': sector,
+      'societies': societies.filter((society) => society.sectorType === sector).length
+    }
+  })
+ 
   const type = req.query.type
   let liquidationData = states
 
@@ -26,5 +36,5 @@ export default async function handler(
     liquidationData = sectors
   }
   console.log(liquidationData)
-  return res.status(200).json({liquidationData, areas})
+  return res.status(200).json({sectorsData, liquidationData, areas})
 }

@@ -38,6 +38,11 @@ type StateData = {
   count: number;
 }
 
+type SectorsDataNew = {
+  sector: string
+  societies: number
+}
+
 type Application = {
   id: number;
   societyName: string;

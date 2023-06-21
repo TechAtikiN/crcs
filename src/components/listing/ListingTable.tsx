@@ -6,6 +6,7 @@ interface Props {
 
 const ListingTable = ({ societies }: Props) => {
   const router = useRouter()
+  console.log(societies)
 
   return (
     <table className='mx-auto shadow-2xl overflow-y-scroll overflow-x-hidden'>
@@ -19,7 +20,7 @@ const ListingTable = ({ societies }: Props) => {
         </tr>
       </thead>
       <tbody className='border border-gray-300'>
-        {societies?.map((society, index) => (
+        {societies && societies?.map((society, index) => (
           <tr onClick={() => router.push(`listing/${society.id}`)} key={index} className='bg-gray-100 text-center rounded-l-xl rounded-r-xl border-b border-red-200 px-3 py-2 hover:cursor-pointer hover:bg-red-200'>
             <td className='p-4 font-semibold border-r border-gray-400'>{society.id}</td>
             <td className='p-4 font-semibold border-r border-gray-400'>{society.name}</td>

@@ -26,6 +26,7 @@ const Society = () => {
         }
       })
       const data = await res.json()
+      console.log(data)
       setSocietyData(data)
       setLoading(false)
     }

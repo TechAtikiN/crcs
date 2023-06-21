@@ -76,6 +76,7 @@ const SocietyListing = () => {
 
     const fetchSocieties = async () => {
       setLoading(true)
+      console.log(state, sector)
       const res = await fetch(`http://localhost:3000/api/listing?state=${state}&sector=${sector}`, {
         method: 'GET',
         headers: {
@@ -89,12 +90,12 @@ const SocietyListing = () => {
       setLoading(false)
     }
     userIsAdmin ? fetchSocieties() : router.push('/signin/admin')
-  }, [])
+  }, [state, sector])
 
-  useEffect(() => {
-    notify()
-  }, [societies])
-  console.log(societies)
+  // useEffect(() => {
+  //   notify()
+  // }, [societies])
+  // console.log(societies)
 
   return (
     <div className='text-gray-700'>
@@ -105,15 +106,41 @@ const SocietyListing = () => {
         <FilterOptions states={states} sectorType={sectorType} setState={setState} setSector={setSector} />
 
         <button
-          type='submit' onClick={(e) => handleSubmit(e)} className='px-3 font-bold py-2 rounded-full hover:bg-red-600 bg-red-500 text-white'>Search Societies</button>
+          type='submit' onClick={(e) => handleSubmit(e)} className='px-3 font-bold py-2 rounded-full hover:bg-red-600 bg-red-500 text-white'
+        >
+          Search Societies
+        </button>
         <Toaster />
       </div>
 
       {/* table data */}
       {societies && societies?.length > 0 && loading ?
         <img className='h-20 w-70 mx-auto rounded-full' src='https://miro.medium.com/v2/resize:fit:1400/1*CsJ05WEGfunYMLGfsT2sXA.gif' alt='loader' />
-        : <div className='mt-10'>
-          {societies && <ListingTable societies={societies} />}
+        : <div className='flex flex-col items-center mt-10'>
+          <p className='bg-[#212A3E] p-2 text-white w-1/2 my-4 rounded-xl'><strong>{societies.length}</strong> Societies found for in <strong>{state}</strong> state and <strong>{sector}</strong> sector</p>
+          <table className='mx-auto shadow-2xl overflow-y-scroll overflow-x-hidden'>
+            <thead className='rounded-xl'>
+              <tr className='bg-red-500 rounded-xl text-white'>
+                <th className='p-4 border-r border-red-700'>ID</th>
+                <th className='p-4 border-r border-red-700'>Society Name</th>
+                <th className='p-4 border-r border-red-700'>State</th>
+                <th className='p-4 border-r border-red-700'>Sector</th>
+                <th className='p-4 border-r border-red-700'>Year of Registration</th>
+              </tr>
+            </thead>
+            <tbody className='border border-gray-300'>
+              {societies && societies?.map((society, index) => (
+                <tr onClick={() => router.push(`listing/${society.id}`)} key={index} className='bg-gray-100 text-center rounded-l-xl rounded-r-xl border-b border-red-200 px-3 py-2 hover:cursor-pointer hover:bg-red-200'>
+                  <td className='p-4 font-semibold border-r border-gray-400'>{society.id}</td>
+                  <td className='p-4 font-semibold border-r border-gray-400'>{society.name}</td>
+                  <td className='py-4 border-r border-gray-400'>{society.state}</td>
+                  <td className='p-4 border-r border-gray-400'>{society.sectorType}</td>
+                  <td className='p-4 font-semibold border-r border-gray-400'>{society.dateOfRegistration}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
         </div>
       }
     </div>
